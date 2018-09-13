@@ -15,13 +15,13 @@ If they are, you only know that it might be, because another element or some com
 The hash functions used should be *independent* and *uniformly distributed*. They should also be as fast as possible (that's why cryptographic hashes are not very efficient).
 In this implementation the used hash function is Murmur. It passes the *chi-square test*(it's uniformly distributed) and the *avalanche test*(when changing a single bit in the key more than 50% of the hash result changes as well).
 The result of the murmur hash function is used to produce two hash values for every element. The second one gets added to the first one according to the number of needed hash functions, so that the implementation uses one hash to generate however many needed, 
-which as is said [here] (https://www.youtube.com/watch?v=vx1JRs4M3HI&t=781s) is very efficient. 
+which as is said [here](https://www.youtube.com/watch?v=vx1JRs4M3HI&t=781s) is very efficient. 
 
 ## Examples
 
 To create an empty Bloom filter, just call the constructor with the required false positive probability and the number of elements you expect to add to the Bloom filter.
 
-```
+```java
     double falsePositiveProbability = 0.1;
     int expectedNumberOfElements = 100;
 
@@ -34,12 +34,12 @@ according to the given [formulas] (https://hur.st/bloomfilter/). Note that if yo
 
 Elements are added via the insert method and searched for with the mightContain method:
 
-``` 
+```java 
     String element = "abcd";
-	bloomFilter.insert(element);
+    bloomFilter.insert(element);
 	
-	bloomFilter.mightContain(element); //true
-	bloomFilter.mightContain("abcf");  //false
+    bloomFilter.mightContain(element); //true
+    bloomFilter.mightContain("abcf");  //false
 	
 
 ```
